@@ -4,7 +4,6 @@ Feature: Elements test cases
 
   Scenario: Go to Elements page
     Given Open portal
-
     Then Go to 'Elements' page
 
 #  Scenario Outline
@@ -17,5 +16,5 @@ Feature: Elements test cases
 #      | user3    |
 
 
-  Scenario: End.
+  Scenario: End tests
     Given Close browsers

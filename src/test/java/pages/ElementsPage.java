@@ -9,7 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 public class ElementsPage {
 
     private WebDriver driver;
-    private WaitHelper waitHelper;
 
     @FindBy(xpath = "//div[contains(@class, 'playgound-header')]//div[contains(text(), 'Elements')]")
     private WebElement elementsHeader;
