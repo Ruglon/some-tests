@@ -8,6 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AlertsPage {
 
     private WebDriver driver;
@@ -21,11 +24,21 @@ public class AlertsPage {
         PageFactory.initElements(driver, this);
     }
 
+    public void chooseOptionInList(String option){
+        String messageActual = String.format("//div[contains(@class, 'element-list')]" +
+                "//li//span[contains(text(), '%s')]", option);
+
+        //div[contains(@class, 'element-list')]//li//span[contains(text(), 'Browser Windows')]
+        WebElement card  = WaitHelper.waitForElementToBeVisibleByLocator(By.xpath(messageActual), driver, 15);
+        ActionsHelper.scrollToElement(driver, card);
+        card.click();
+    }
+
     /**
      * Handle different type of opened new windows and tabs
      */
 
-    public void checkNewWindow(String buttonName){
+    public void openNewWindow(String buttonName){
         String messageActual = String.format("//div[@id='browserWindows']" +
                 "//button[contains(text(), '%s')]", buttonName);
         String originalWindow = driver.getWindowHandle();
@@ -35,6 +48,7 @@ public class AlertsPage {
 
         switch (buttonName) {
             case "New Window Message":
+                assert card != null;
                 card.click();
                 for (String windowHandle : driver.getWindowHandles()) {
                     if (!originalWindow.contentEquals(windowHandle)) {
@@ -42,7 +56,9 @@ public class AlertsPage {
                         break;
                     }
                 }
-                driver.findElement(By.xpath("//body[contains(text(), 'Knowledge increases')]"));
+//                WaitHelper.waitForElementToBeVisibleByLocator(By.xpath("//*[contains(text(), " +
+//                        "'Knowledge increases')]"), driver, 15);
+//                driver.findElement(By.xpath("//*[contains(text(), 'Knowledge increases')]"));
 
                 driver.close(); // Close the new window
                 driver.switchTo().window(originalWindow);

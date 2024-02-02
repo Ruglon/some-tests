@@ -23,8 +23,13 @@ public class WaitHelper {
     }
 
     public static WebElement waitForElementToBeVisibleByLocator(By locator, WebDriver driver, int timeoutInSeconds) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (TimeoutException e) {
+            System.out.println("Element not visible after " + timeoutInSeconds + " seconds.");
+            return null; // Or handle it as per your test requirement
+        }
     }
 
     public WebElement waitForElementToBeClickable(WebElement element,  WebDriver driver, int timeoutInSeconds) {

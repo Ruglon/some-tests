@@ -36,6 +36,7 @@ public class HomePage {
 
 
     public void choosePage(String cardName){
+
         String messageActual = String.format("//div[@class='category-cards']//div[@class='card-body']" +
                 "//h5[contains(text(), '%s')]/parent::*", cardName);
 
@@ -47,10 +48,10 @@ public class HomePage {
                 case "Elements":
                     goToElementsPage();
                     break;
-                case "Forms":
+                case "Alerts":
                     goToAlertsPage();
                     break;
-                case "Alerts, Frame & Windows":
+                case "Forms":
                     goToFormsPage();
                 default:
                     throw new IllegalArgumentException("No such card page: " + cardName);
