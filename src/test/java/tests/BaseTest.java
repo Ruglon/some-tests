@@ -1,5 +1,6 @@
 package tests;
 
+import driverfactory.BrowserFactory;
 import driverfactory.DriverFactory;
 import helper.WaitHelper;
 import org.junit.jupiter.api.AfterEach;
@@ -15,6 +16,8 @@ public class BaseTest {
     protected WaitHelper waitHelper;
 
     @BeforeEach
+//    @ParameterizedTest
+//    @EnumSource(BrowserFactory.class)
     public void preCondition() {
 
         driver = new DriverFactory().createInstance(baseConfig.browser());
