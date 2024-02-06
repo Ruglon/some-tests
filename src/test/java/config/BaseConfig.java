@@ -24,6 +24,9 @@ public interface BaseConfig extends Config{
     @Key("url.base")
     String url();
 
+    @Key("url.api")
+    String urlApi();
+
     @Key("grid.url")
     String gridUrl();
 

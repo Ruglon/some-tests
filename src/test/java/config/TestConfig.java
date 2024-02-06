@@ -11,4 +11,7 @@ import org.aeonbits.owner.Config;
         "file:src/test/resources/test.properties", //file path
 })
 public interface TestConfig extends Config{
+
+    @Key("url.users")
+    String users();
 }
